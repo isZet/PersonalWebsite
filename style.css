@@ -1,0 +1,324 @@
+/* 
+   style.css
+   This file is for your custom CSS styles.
+*/
+
+/* =========================================
+   1. VARIABLES & GLOBAL STYLES
+   ========================================= */
+:root {
+    --primary-color: #2563eb; /* Professional Blue */
+    --secondary-color: #1e293b; /* Deep Slate */
+    --accent-color: #3b82f6;
+    --text-color: #1e293b; /* Deep slate for readability */
+    --text-secondary: #475569; /* Medium slate */
+    --bg-light: #f8fafc; /* Off-white */
+    --bg-neutral: #f1f5f9; /* Cool light gray */
+    --bg-card: #ffffff; /* Card surface */
+    --bg-card-alt: #f8fafc; /* Card hover */
+    --border-light: #e2e8f0; /* Light slate border */
+    --font-main: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-color);
+    line-height: 1.6;
+    background: linear-gradient(135deg, #f1f5f9 0%, #f8fafc 50%, #cbd5e1 100%);
+    background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+/* Custom Primary Button to match palette */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+/* Section Titles with underline */
+.section-title {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Add padding to sections to space them out from the fixed navbar */
+section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+/* Alternate section backgrounds for visual hierarchy (complimentary to home gradient) */
+section:nth-child(odd) {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+section:nth-child(even) {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+/* Accent gradients for specific sections */
+#skills {
+    background: linear-gradient(135deg, #ffffff 0%, #dbeafe 100%);
+}
+
+#gallery {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+}
+
+#donate {
+    background: linear-gradient(135deg, #f1f5f9 0%, #dbeafe 100%);
+}
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+    section {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    h1.display-4 {
+        font-size: 2.5rem;
+    }
+}
+
+/* =========================================
+   2. HERO SECTION
+   ========================================= */
+/* Make the home section take up the full viewport height */
+#home {
+    min-height: 100vh;
+    padding-top: 0; /* Override section padding */
+    padding-bottom: 0; /* Override section padding */
+    /* White top-left to blue bottom-right */
+    background: linear-gradient(to bottom right, #ffffff 0%, #2563eb 100%);
+}
+
+/* Hero Image Styling */
+.hero-img {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Organic shape */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.5s ease;
+}
+
+.hero-img:hover {
+    border-radius: 50%;
+    transform: scale(1.02);
+}
+
+/* Profile Image Styling (About Section) */
+.profile-img {
+    width: 300px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+/* =========================================
+   3. CARDS & HOVER EFFECTS
+   ========================================= */
+.skill-card, .project-card, .blog-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.skill-card:hover, .project-card:hover, .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15) !important;
+    background: var(--bg-card-alt);
+    border-color: var(--accent-color);
+}
+
+/* =========================================
+   4. GALLERY ALBUM STYLES
+   ========================================= */
+.album-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+}
+
+.album-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.18) !important;
+    border-color: var(--accent-color);
+}
+
+.album-cover {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.album-card:hover .album-cover {
+    transform: scale(1.05);
+}
+
+/* Overlay text on album card */
+.album-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 20px;
+    color: white;
+}
+
+/* Modal Carousel Styles */
+.modal-carousel-img {
+    height: 70vh; /* Large height for modal view */
+    object-fit: contain; /* Show full image without cropping */
+    width: 100%;
+}
+
+/* Carousel Controls - High Visibility */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-size: 50%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0.85;
+    width: 10%;
+}
+
+@media (max-width: 768px) {
+    .modal-carousel-img {
+        height: 40vh;
+    }
+}
+
+/* Navbar adjustments */
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   5. SKILL ICONS STYLING
+   ========================================= */
+.skill-icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.skill-icons i {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+}
+
+.skill-icons i:hover {
+    transform: scale(1.15) rotateY(10deg);
+    color: var(--secondary-color);
+    text-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+@media (max-width: 576px) {
+    .skill-icons i {
+        font-size: 2.5rem;
+        width: 55px;
+        height: 55px;
+        line-height: 55px;
+    }
+    
+    .skill-icons {
+        gap: 15px;
+    }
+}
+
+/* =========================================
+   6. HOME SOCIAL ICONS
+   ========================================= */
+.social-icons {
+    display: flex;
+    gap: 14px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    background: transparent;
+    border-radius: 8px;
+    border: 1.5px solid var(--border-light);
+    transition: all 0.18s ease;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    transform: translateY(-4px);
+    color: var(--bg-card);
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+@media (max-width: 576px) {
+    .social-icons a {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+}
